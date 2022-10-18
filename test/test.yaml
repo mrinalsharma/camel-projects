@@ -1,3 +1,4 @@
+- rest: {}
 - route:
     from:
       uri: kamelet:timer-source
@@ -7,4 +8,3 @@
       parameters:
         period: 2000
         message: '{{message}}'
-- rest: {}
