@@ -1,0 +1,333 @@
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+servers:
+- url: https://dev.api.dishcloud.io/wireless/retail/v1/vas-management-service
+  description: Apigee Proxy Url for dev env
+- url: https://test.api.dishcloud.io/wireless/retail/v1/vas-management-service
+  description: Apigee Proxy Url for test env.
+  
+info:
+  description: The value added services management suite allows integration to the value added services platform, providing endpoints for both external third-party providers and internal integration points.
+  version: "1.0.0"
+  title: Value Added Services Management
+  contact:
+    email: peter.hoesly@dish.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: internal
+    description: Internal-only calls that would not be hosted externally
+  - name: external
+    description: To be hosted on Apigee for external consumption by third parties, Magento, etc.
+security:
+  - oAuth2ClientCredentials: []
+paths:
+  /subscription:
+    post:
+      tags:
+        - external
+      summary: creates a subscription for a vas for a customer
+      operationId: addSubscription
+      description: creates a value added service for a customer
+      parameters:
+        - $ref: '#/components/parameters/X-Correlation-Id'
+        - $ref: '#/components/parameters/X-Message-Id'
+        - $ref: '#/components/parameters/X-Client-Id'
+        - $ref: '#/components/parameters/X-Forwarded-By'
+        - $ref: '#/components/parameters/X-TimeStamp' 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VasSubscription'
+        description: Value Added Subscription Request
+      responses:
+        '201':
+          description: item created
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '405':
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: An existing item already exists
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+     
+  /validateSubscriber:
+    get:
+      tags:
+      - external
+      summary: Validates the subscriber based on MSISDN and/or ICCID
+      operationId: validateSubscriber
+      parameters:
+      - $ref: '#/components/parameters/X-Correlation-Id'
+      - $ref: '#/components/parameters/X-Message-Id'
+      - $ref: '#/components/parameters/X-Client-Id'
+      - $ref: '#/components/parameters/X-Forwarded-By'
+      - $ref: '#/components/parameters/X-TimeStamp'       
+      - name: msisdn
+        in: query
+        description: MSISDN
+        schema:
+          type: string
+      - name: iccid
+        in: query
+        description: ICCID code when available
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/VasValidationResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '405':
+          description: Method Not allowed
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Conflict
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    oAuth2ClientCredentials:
+      type: oauth2
+      description: 'See http://developers.gettyimages.com/api/docs/v3/oauth2.html'
+      flows:
+        clientCredentials:
+          tokenUrl: 'https://dev.api.dishcloud.io/generic/platform/v1/oauth2/token'
+  parameters:
+    X-TimeStamp:
+      description: Date/Time of transaction or interaction in UTC
+      in: header
+      name: X-TimeStamp
+      required: false
+      schema:
+        type: string
+        example: '2021-04-27T19:49:36.933+0000'
+    X-Client-Id:
+      description: Identifier of Client, which is Retail Wireless API Consumer and should be App display name from Apigee Dev portal
+      in: header
+      name: X-Client-Id
+      required: false
+      schema:
+        type: string
+        example: 'magento'
+    X-Forwarded-By:
+      description: Immediate client name
+      in: header
+      name: X-ForwardedBy
+      required: false
+      schema:
+        type: string
+        example: 'aws-com'
+    X-Message-Id:
+      description: Unique Identifier of the transaction or interaction during workflow
+      in: header
+      name: X-Message-Id
+      required: false
+      schema:
+        type: string
+        example: '1000'
+    X-Correlation-Id:
+      description: Correlation Identifier of the business flow or workflow at retail wireless api Consumer
+      in: header
+      name: X-Correlation-Id
+      required: false
+      schema:
+        type: string
+        example: '123e4567-e89b-12d3-a456-426614174000'
+  schemas:
+    VasValidationResponse:
+      type: object
+      required:
+        - carrierStatus
+      properties:
+        carrierStatus:
+          type: integer
+          description: Status of MSISDN on the carrier's network (ACTIVE=0;INACTIVE=1)
+          enum: [0, 1]
+        subscriberStatus:
+          type: string
+          description: Subscriber's account status( ACTIVE = 0; SUSPEND=1;CANCELLED=2)
+          enum: [0, 1, 2]
+        customer: 
+          $ref: '#/components/schemas/CustomerAccountRef'
+    VasSubscription:
+      type: object
+      required:
+        - msisdn
+        - subscription
+      properties:
+        msisdn: 
+          type: string
+          description: Device tied to customer related to topup
+        subscription:
+          type: array
+          items:
+            $ref: '#/components/schemas/VasSubscriptionRef'
+            min-items: 1
+        requestor:
+          $ref: '#/components/schemas/RelatedParty'
+    ChannelRef:
+      type: object
+      properties:
+        id:
+          type: string
+          description: unique identifier
+        href:
+          type: string
+          description: Hyperlink reference
+        name:
+          type: string
+          description: Name of the channel.
+      description: The channel to which the resource reference to. e.g. channel for
+        selling product offerings, channel for opening a trouble ticket etc..
+    CustomerAccountRef:
+      type: object
+      properties:
+        msisdn:
+          type: string
+          description: Device tied to customer related to topup
+        iccid:
+          type: string
+          description: SIM tied to customer related to topup
+        mccmnc:
+          type: string
+          description: Mobile Country Code /Mobile Network Code of the subscriber's SIM 
+        gid1:
+          type: string
+          description: Group Identifier Level 1 value assigned to the subscriber's SIM
+        brandName:
+          type: string
+          description: Brand name of the mobile virtual network operator (MVNO)         
+        id:
+          type: string
+          description: Unique 12-digit retail wireless id
+      description: Customer reference; must provide either the id or msisdn
+    RelatedParty:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: unique identifier
+        locationId:
+          type: string
+          description: location identifier
+        name:
+          type: string
+          description: Name of the related entity
+    VasSubscriptionRef:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: unique identifier
+        name:
+          type: string
+          description: Name of the related entity.
+        productId:
+          type: string
+          description: VVM product ID (VVM-PREM)
+        purchaseId:
+          type: string
+          description:  Unique identifier for the purchase (up to 128 character)
+        expirationDate:
+          type: string
+          format: date-time
+          description:  Date and time when the subscription expires (should be UTC time)
+          example: '2016-08-29T09:12:33.001Z'          
+    Error:
+      description: >-
+        Used when an API throws an Error, typically with a HTTP error
+        response-code (3xx, 4xx, 5xx)
+      type: object
+      required:
+        - code
+        - reason
+      properties:
+        code:
+          type: string
+          description: 'Application relevant detail, defined in the API or a common list.'
+        reason:
+          type: string
+          description: >-
+            Explanation of the reason for the error which can be shown to a client
+            user.
+        message:
+          type: string
+          description: >-
+            More details and corrective actions related to the error which can be
+            shown to a client user.
+        status:
+          type: string
+          description: HTTP Error code extension
