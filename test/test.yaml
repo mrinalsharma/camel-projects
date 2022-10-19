@@ -95,10 +95,10 @@
       uri: direct:validateSubscriber
       steps:
         - log:
-            message: '{body}'
+            message: hello
 - route:
     from:
       uri: direct:addSubscription
       steps:
         - log:
-            message: '{body}'
+            message: hello
