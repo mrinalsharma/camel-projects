@@ -3,4 +3,7 @@ kind: Integration
 metadata:
   name: test
 spec:
-  flows: []
+  flows:
+    - route:
+        from:
+          uri: direct
