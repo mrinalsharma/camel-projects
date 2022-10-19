@@ -21,5 +21,4 @@
             id: log
       parameters:
         apiComponentName: openapi
-        consumerComponentName: jetty
       id: hello
