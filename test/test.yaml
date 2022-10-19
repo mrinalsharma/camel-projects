@@ -1,3 +1,8 @@
+- restConfiguration:
+    scheme: http
+    host: test.karavan.svc.cluster.local
+    port: '9090'
+    contextPath: /hello
 - route:
     from:
       uri: kamelet:timer-source
@@ -12,12 +17,9 @@
       uri: rest-api:/hello
       steps:
         - to:
-            uri: log
+            uri: log:hello
+            id: log
       parameters:
         apiComponentName: openapi
+        consumerComponentName: undertow
       id: hello
-- restConfiguration:
-    scheme: http
-    host: test.karavan.svc.cluster.local
-    port: '9090'
-    contextPath: /hello
