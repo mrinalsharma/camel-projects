@@ -7,7 +7,7 @@
     apiContextPath: /hello
 - rest:
     post:
-      - to: directhttp
+      - to: direct:directhttp
         consumes: application/json
         produces: application/json
         bindingMode: json
@@ -22,7 +22,7 @@
         message: hello world
 - route:
     from:
-      uri: direct
+      uri: direct:directhttp
       steps:
         - log:
             message: hello world from me
