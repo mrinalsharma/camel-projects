@@ -1,10 +1,3 @@
-- restConfiguration:
-    scheme: http
-    host: test.karavan.svc.cluster.local
-    port: '9090'
-    contextPath: /
-    component: jetty
-    apiContextPath: /hello
 - rest:
     post:
       - to: direct:directhttp
@@ -27,3 +20,10 @@
         - log:
             message: hello world from me
       id: directhttp
+- restConfiguration:
+    scheme: http
+    host: test.karavan.svc.cluster.local
+    port: '9090'
+    contextPath: /
+    component: platform-http
+    apiContextPath: /hello
