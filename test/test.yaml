@@ -6,5 +6,5 @@
         - log:
             message: ${body}
       parameters:
-        period: 2000
+        period: 5000
         message: hello world
