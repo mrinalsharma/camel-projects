@@ -5,12 +5,6 @@
     contextPath: /
     component: jetty
     apiContextPath: /hello
-- rest:
-    post:
-      - to: direct
-        consumes: application/json
-        produces: application/json
-        bindingMode: json
 - route:
     from:
       uri: kamelet:timer-source
@@ -23,6 +17,10 @@
 - route:
     from:
       uri: direct
-      steps:
-        - log: {}
-    id: httpdirect
+      id: directhttp
+- rest:
+    post:
+      - to: directhttp
+        consumes: application/json
+        produces: application/json
+        bindingMode: json
