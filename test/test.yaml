@@ -1,3 +1,10 @@
+- rest:
+    post:
+      - to: direct:directhttp
+        consumes: application/json
+        produces: application/json
+        bindingMode: json
+        path: /me
 - route:
     from:
       uri: kamelet:timer-source
@@ -14,13 +21,6 @@
         - log:
             message: hello world from me
       id: directhttp
-- rest:
-    post:
-      - to: direct:directhttp
-        consumes: application/json
-        produces: application/json
-        bindingMode: json
-        path: /me
 - restConfiguration:
     scheme: http
     host: test.karavan.svc.cluster.local
@@ -29,4 +29,3 @@
     component: platform-http
     apiContextPath: /hello
     bindingMode: json
-    apiComponent: openapi
