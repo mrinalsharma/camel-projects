@@ -1,90 +1,105 @@
 - rest:
-    path: "/wireless/retail/v1/vas-management-service"
     post:
-    - id: "addSubscription"
-      path: "/subscription"
-      description: "creates a value added service for a customer"
-      consumes: "application/json"
-      produces: "application/json;charset=utf-8"
-      param:
-      - dataType: "string"
-        description: "Correlation Identifier of the business flow or workflow at retail\
-          \ wireless api Consumer"
-        name: "X-Correlation-Id"
-        required: false
-        type: "header"
-      - dataType: "string"
-        description: "Unique Identifier of the transaction or interaction during workflow"
-        name: "X-Message-Id"
-        required: false
-        type: "header"
-      - dataType: "string"
-        description: "Identifier of Client, which is Retail Wireless API Consumer\
-          \ and should be App display name from Apigee Dev portal"
-        name: "X-Client-Id"
-        required: false
-        type: "header"
-      - dataType: "string"
-        description: "Immediate client name"
-        name: "X-Forwarded-By"
-        required: false
-        type: "header"
-      - dataType: "string"
-        description: "Date/Time of transaction or interaction in UTC"
-        name: "X-TimeStamp"
-        required: false
-        type: "header"
-      - description: "Value Added Subscription Request"
-        name: "body"
-        required: true
-        type: "body"
-      to: "direct:addSubscription"
+      - param:
+          - name: X-Correlation-Id
+            type: header
+            dataType: string
+            description: >-
+              Correlation Identifier of the business flow or workflow at retail
+              wireless api Consumer
+            required: false
+          - name: X-Message-Id
+            type: header
+            dataType: string
+            description: >-
+              Unique Identifier of the transaction or interaction during
+              workflow
+            required: false
+          - name: X-Client-Id
+            type: header
+            dataType: string
+            description: >-
+              Identifier of Client, which is Retail Wireless API Consumer and
+              should be App display name from Apigee Dev portal
+            required: false
+          - name: X-Forwarded-By
+            type: header
+            dataType: string
+            description: Immediate client name
+            required: false
+          - name: X-TimeStamp
+            type: header
+            dataType: string
+            description: Date/Time of transaction or interaction in UTC
+            required: false
+          - name: body
+            type: body
+            description: Value Added Subscription Request
+            required: true
+        id: addSubscription
+        path: /subscription
+        description: creates a value added service for a customer
+        consumes: application/json
+        produces: application/json;charset=utf-8
+        to: direct:addSubscription
     get:
-    - id: "validateSubscriber"
-      path: "/validateSubscriber"
-      produces: "application/json;charset=utf-8"
-      param:
-      - dataType: "string"
-        description: "Correlation Identifier of the business flow or workflow at retail\
-          \ wireless api Consumer"
-        name: "X-Correlation-Id"
-        required: false
-        type: "header"
-      - dataType: "string"
-        description: "Unique Identifier of the transaction or interaction during workflow"
-        name: "X-Message-Id"
-        required: false
-        type: "header"
-      - dataType: "string"
-        description: "Identifier of Client, which is Retail Wireless API Consumer\
-          \ and should be App display name from Apigee Dev portal"
-        name: "X-Client-Id"
-        required: false
-        type: "header"
-      - dataType: "string"
-        description: "Immediate client name"
-        name: "X-Forwarded-By"
-        required: false
-        type: "header"
-      - dataType: "string"
-        description: "Date/Time of transaction or interaction in UTC"
-        name: "X-TimeStamp"
-        required: false
-        type: "header"
-      - dataType: "string"
-        description: "MSISDN"
-        name: "msisdn"
-        required: false
-        type: "query"
-      - dataType: "string"
-        description: "ICCID code when available"
-        name: "iccid"
-        required: false
-        type: "query"
-      to: "direct:validateSubscriber"
+      - param:
+          - name: X-Correlation-Id
+            type: header
+            dataType: string
+            description: >-
+              Correlation Identifier of the business flow or workflow at retail
+              wireless api Consumer
+            required: false
+          - name: X-Message-Id
+            type: header
+            dataType: string
+            description: >-
+              Unique Identifier of the transaction or interaction during
+              workflow
+            required: false
+          - name: X-Client-Id
+            type: header
+            dataType: string
+            description: >-
+              Identifier of Client, which is Retail Wireless API Consumer and
+              should be App display name from Apigee Dev portal
+            required: false
+          - name: X-Forwarded-By
+            type: header
+            dataType: string
+            description: Immediate client name
+            required: false
+          - name: X-TimeStamp
+            type: header
+            dataType: string
+            description: Date/Time of transaction or interaction in UTC
+            required: false
+          - name: msisdn
+            type: query
+            dataType: string
+            description: MSISDN
+            required: false
+          - name: iccid
+            type: query
+            dataType: string
+            description: ICCID code when available
+            required: false
+        id: validateSubscriber
+        path: /validateSubscriber
+        produces: application/json;charset=utf-8
+        to: direct:validateSubscriber
+    path: /wireless/retail/v1/vas-management-service
 - route:
     from:
-      uri: "direct:validateSubscriber"
+      uri: direct:validateSubscriber
+      steps:
+        - log:
+            message: '{body}'
 - route:
     from:
-      uri: "direct:addSubscription"
+      uri: direct:addSubscription
+      steps:
+        - log: {}
+        - log:
+            message: '{body}'
