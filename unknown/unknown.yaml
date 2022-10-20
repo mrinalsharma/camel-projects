@@ -1,15 +1,3 @@
-- route:
-    from:
-      uri: direct:validateSubscriber
-      steps:
-        - log:
-            message: hello
-- route:
-    from:
-      uri: direct:addSubscription
-      steps:
-        - log:
-            message: hello
 - rest:
     post:
       - param:
@@ -104,3 +92,12 @@
         produces: application/json;charset=utf-8
         to: direct:validateSubscriber
     path: /wireless/retail/v1/vas-management-service
+- route:
+    from:
+      uri: direct:validateSubscriber
+      steps:
+        - process:
+            ref: CustomProcessor
+- route:
+    from:
+      uri: direct:addSubscription
