@@ -97,7 +97,8 @@
       uri: direct:validateSubscriber
       steps:
         - process:
-            ref: '#class:Customprocessor'
+            ref: '#myBean'
+            id: myBeanProcessor
         - log:
             message: '{body}'
     id: validateSubscriber
