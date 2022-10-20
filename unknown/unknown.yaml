@@ -104,4 +104,7 @@
 - route:
     from:
       uri: direct:addSubscription
+      steps:
+        - log:
+            message: '{body}'
     id: addSubscription
