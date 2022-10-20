@@ -1,3 +1,15 @@
+- route:
+    from:
+      uri: direct:validateSubscriber
+      steps:
+        - log:
+            message: hello
+- route:
+    from:
+      uri: direct:addSubscription
+      steps:
+        - log:
+            message: hello
 - rest:
     post:
       - param:
@@ -36,6 +48,8 @@
             type: body
             description: Value Added Subscription Request
             required: true
+        responseMessage:
+          - message: '{"message":"Subscribed"}'
         id: addSubscription
         path: /subscription
         description: creates a value added service for a customer
@@ -90,15 +104,3 @@
         produces: application/json;charset=utf-8
         to: direct:validateSubscriber
     path: /wireless/retail/v1/vas-management-service
-- route:
-    from:
-      uri: direct:validateSubscriber
-      steps:
-        - log:
-            message: hello
-- route:
-    from:
-      uri: direct:addSubscription
-      steps:
-        - log:
-            message: hello
