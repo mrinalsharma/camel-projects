@@ -1,4 +1,4 @@
-package org.msharma.camel
+package org.msharma.camel;
 import org.apache.camel.BindToRegistry;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
