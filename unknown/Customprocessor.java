@@ -1,4 +1,4 @@
-
+package org.camel.karavan.demo.unknown;
 import org.apache.camel.BindToRegistry;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
