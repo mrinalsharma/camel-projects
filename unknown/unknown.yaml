@@ -97,7 +97,7 @@
       uri: direct:validateSubscriber
       steps:
         - process:
-            ref: '#class:org.camel.karavan.demo.unknown.Customprocessor'
+            ref: '#class:com.demo.unknown.Customprocessor'
             id: myBeanProcessor
         - log:
             message: '{body}'
