@@ -98,7 +98,6 @@
       steps:
         - process:
             ref: '#class:com.demo.unknown.Customprocessor'
-            id: myBeanProcessor
         - log:
             message: '{body}'
     id: validateSubscriber
