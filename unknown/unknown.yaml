@@ -109,6 +109,4 @@
         - log:
             message: '{body}'
     id: addSubscription
-- beans:
-    - name: Customprocessor
-      type: Customprocessor
+- {}
