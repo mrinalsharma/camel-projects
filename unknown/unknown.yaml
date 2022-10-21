@@ -109,4 +109,3 @@
         - log:
             message: '{body}'
     id: addSubscription
-- {}
