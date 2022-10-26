@@ -11,6 +11,6 @@ public class Ioconverter {
     public static InputStream toInputStream(java.util.LinkedList list) {
         StringBuilder str = new StringBuilder();
         list.forEach(value -> {str.append(value);});
-        return new BufferedInputStream(str.getBytes());
+        return new BufferedInputStream(str.toString().getBytes());
     }
 }
