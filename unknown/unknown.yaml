@@ -99,7 +99,7 @@
         - process:
             ref: CustomProcessor
         - log:
-            message: '{body}'
+            message: ${body}
     id: validateSubscriber
 - route:
     from:
