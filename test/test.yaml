@@ -6,7 +6,7 @@ spec:
   flows:
     - route:
         from:
-          uri: timer
+          uri: timer:my timer
           steps:
             - log:
                 message: hello
