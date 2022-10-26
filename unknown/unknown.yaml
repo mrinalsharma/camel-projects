@@ -98,6 +98,12 @@
       steps:
         - process:
             ref: CustomProcessor
+        - sort:
+            expression:
+              tokenize:
+                token: \n
+        - log:
+            message: ${body}
     id: validateSubscriber
 - route:
     from:
