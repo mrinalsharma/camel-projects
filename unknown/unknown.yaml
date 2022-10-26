@@ -98,13 +98,11 @@
       steps:
         - process:
             ref: CustomProcessor
-        - log:
-            message: ${body}
     id: validateSubscriber
 - route:
     from:
       uri: direct:addSubscription
       steps:
         - log:
-            message: '{body}'
+            message: ${body}
     id: addSubscription
