@@ -97,7 +97,7 @@
       uri: direct:validateSubscriber
       steps:
         - process:
-            ref: '#class:CustomProcessor'
+            ref: '#class:org.camel.karavan.unknown.Customprocessor'
         - log:
             message: '{body}'
     id: validateSubscriber
