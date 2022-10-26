@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.BufferedInputStream;
 import java.util.*;
+import org.apache.camel.Converter;
 
 @Converter(generateLoader = true)
 public class Ioconverter {
