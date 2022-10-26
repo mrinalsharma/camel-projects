@@ -7,9 +7,9 @@ import org.apache.camel.Converter;
 
 @Converter(generateLoader = true)
 public class Ioconverter {
-    StringBuilder str = new StringBuilder();
     @Converter
     public static InputStream toInputStream(java.util.LinkedList list) {
+        StringBuilder str = new StringBuilder();
         list.forEach(value -> {str.append(value);});
         return new BufferedInputStream(str.getBytes());
     }
