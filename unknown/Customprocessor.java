@@ -1,8 +1,9 @@
-import org.apache.camel.BindToRegistry;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+import javax.inject.Named;
+import javax.inject.Singleton;
 
-@BindToRegistry
+@Singleton @Named("CustomProcessor")
 public class Customprocessor implements Processor {
 
   public void process(Exchange exchange) throws Exception {
