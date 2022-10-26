@@ -8,7 +8,7 @@ import java.util.*;
 public class Ioconverter {
     StringBuilder str = new StringBuilder();
     @Converter
-    public static InputStream toInputStream(java.util.LinkedList list) throws FileNotFoundException {
+    public static InputStream toInputStream(java.util.LinkedList list) {
         list.forEach(value -> {str.append(value);});
         return new BufferedInputStream(str.getBytes());
     }
