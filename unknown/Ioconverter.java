@@ -15,7 +15,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import javax.inject.Named;
 import javax.inject.Singleton;
-
+import javax.enterprise.event.Observes;
 @Singleton @Named("myconverter")
 public class Ioconverter {
      private static final Logger LOG = Logger.getLogger(Ioconverter.class);
@@ -24,6 +24,10 @@ public class Ioconverter {
     @Inject 
     Ioconverter(CamelContext contex) {
         this.context = context;
+    }
+
+    void startup(@Observes StartupEvent event) { 
+        LOG.info("The application is starting...");
     }
 
     @PostConstruct
