@@ -1,16 +1,44 @@
-import java.util.LinkedList;
-import java.io.FileInputStream;
+import javax.inject.Inject;
+import javax.annotation.PostConstruct
+import javax.enterprise.context.ApplicationScoped;
+import java.util.stream.Collectors;
+import java.util.List;
+import org.apache.camel.CamelContext;
 import java.io.InputStream;
-import java.io.BufferedInputStream;
-import java.util.*;
-import org.apache.camel.Converter;
+import org.apache.camel.TypeConverter
 import java.io.ByteArrayInputStream;
-@Converter(generateLoader = true)
+import java.util.LinkedList;
+@ApplicationScoped
 public class Ioconverter {
-    @Converter
-    public static InputStream toInputStream(java.util.LinkedList list) {
-        StringBuilder str = new StringBuilder();
-        list.forEach(value -> {str.append(value);});
-        return new ByteArrayInputStream(str.toString().getBytes());
+
+    @Inject
+    CamelContext context;
+
+    @PostConstruct
+    public init() {
+        return context.getTypeConverterRegistry().addTypeConverter(java.util.LinkedList.class, java.io.InputStream.class, new MyConverter())​;
+    }
+
+    static class MyConverter implements TypeConverter {
+          public <T> T convertTo(Class<T> type, Object value) {
+        // converter from value to the MyOrder bean
+        return (T) new java.io.ByteArrayInputStream("My Hello World".getBytes());
+    }
+
+    public <T> T convertTo(Class<T> type, Exchange exchange, Object value) {
+        // this method with the Exchange parameter will be preferd by Camel to invoke
+        // this allows you to fetch information from the exchange during convertions
+        // such as an encoding parameter or the likes
+        return convertTo(type, value);
+    }
+
+    public <T> T mandatoryConvertTo(Class<T> type, Object value) {
+        return convertTo(type, value);
+    }
+
+    public <T> T mandatoryConvertTo(Class<T> type, Exchange exchange, Object value) {
+        return convertTo(type, value);
+    }
+
     }
 }
