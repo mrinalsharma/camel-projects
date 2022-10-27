@@ -9,6 +9,7 @@ import org.apache.camel.TypeConverter;
 import java.io.ByteArrayInputStream;
 import java.util.LinkedList;
 import org.apache.camel.Exchange;
+import org.apache.camel.support.TypeConverterSupport;
 @ApplicationScoped
 public class Ioconverter {
 
@@ -20,7 +21,7 @@ public class Ioconverter {
         return context.getTypeConverterRegistry().addTypeConverter(java.util.LinkedList.class, java.io.InputStream.class, new MyConverter());
     }
 
-    static class MyConverter implements TypeConverter {
+    static class MyConverter implements TypeConverterSupport {
             public <T> T convertTo(Class<T> type, Object value) {
             // converter from value to the MyOrder bean
             return (T) new java.io.ByteArrayInputStream("My Hello World".getBytes());
@@ -40,6 +41,8 @@ public class Ioconverter {
         public <T> T mandatoryConvertTo(Class<T> type, Exchange exchange, Object value) {
             return convertTo(type, value);
         }
+
+        public tryConvertTo(Class<T> type, Exchange exchange, Object value)
 
     }
 }
