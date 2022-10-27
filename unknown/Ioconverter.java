@@ -14,7 +14,7 @@ import org.jboss.logging.Logger;
 
 @ApplicationScoped
 public class Ioconverter {
-     private static final Logger LOG = Logger.getLogger(ExampleResource.class);
+     private static final Logger LOG = Logger.getLogger(Ioconverter.class);
     @Inject
     CamelContext context;
 
