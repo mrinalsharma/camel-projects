@@ -16,3 +16,5 @@ spec:
                 message: ${body}
           parameters:
             period: 1000
+            message: hello world
+            contentType: text/plain
