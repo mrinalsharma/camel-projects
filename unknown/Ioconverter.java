@@ -10,14 +10,17 @@ import java.io.ByteArrayInputStream;
 import java.util.LinkedList;
 import org.apache.camel.Exchange;
 import org.apache.camel.support.TypeConverterSupport;
+import org.jboss.logging.Logger;
+
 @ApplicationScoped
 public class Ioconverter {
-
+     private static final Logger LOG = Logger.getLogger(ExampleResource.class);
     @Inject
     CamelContext context;
 
     @PostConstruct
     public void init() {
+        LOG.info("Adding converter");
         context.getTypeConverterRegistry().addTypeConverter(java.io.InputStream.class, java.util.LinkedList.class, new MyConverter());
     }
 
