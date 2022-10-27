@@ -16,11 +16,15 @@ import org.apache.camel.Processor;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-@Singleton @Named("myconverter")
+@ApplicationScoped @Named("myconverter")
 public class Ioconverter {
      private static final Logger LOG = Logger.getLogger(Ioconverter.class);
-    @Inject
     CamelContext context;
+
+    @Inject 
+    Ioconverter(CamelContext contex) {
+        this.context = context;
+    }
 
     @PostConstruct
     public void init() {
