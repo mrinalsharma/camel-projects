@@ -110,4 +110,6 @@
             parameters:
               httpMethod: GET
               bridgeEndpoint: false
+        - log:
+            message: ${body}
     id: addSubscription
