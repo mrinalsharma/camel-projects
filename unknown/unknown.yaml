@@ -106,7 +106,7 @@
       uri: direct:addSubscription
       steps:
         - to:
-            uri: http://reqres.in/api/users?page=2
+            uri: http://reqres.in/api/users
             parameters:
               httpMethod: GET
               proxyAuthScheme: https
