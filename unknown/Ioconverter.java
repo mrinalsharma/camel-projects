@@ -16,7 +16,7 @@ import org.apache.camel.Processor;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-@ApplicationScoped @Named("myconverter")
+@Singleton @Named("myconverter")
 public class Ioconverter {
      private static final Logger LOG = Logger.getLogger(Ioconverter.class);
     CamelContext context;
