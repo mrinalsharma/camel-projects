@@ -16,10 +16,10 @@ public class Ioconverter {
 
     @PostConstruct
     public void init() {
-        return context.getTypeConverterRegistry().addTypeConverter(java.util.LinkedList.class, java.io.InputStream.class, new MyConverter())​;
+        return context.getTypeConverterRegistry().addTypeConverter(java.util.LinkedList.class, java.io.InputStream.class, new MyConverter());
     }
 
-        static class MyConverter implements TypeConverter {
+    static class MyConverter implements TypeConverter {
             public <T> T convertTo(Class<T> type, Object value) {
             // converter from value to the MyOrder bean
             return (T) new java.io.ByteArrayInputStream("My Hello World".getBytes());
