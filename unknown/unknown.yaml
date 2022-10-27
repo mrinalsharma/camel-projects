@@ -109,4 +109,5 @@
             uri: http://reqres.in/api/users
             parameters:
               httpMethod: GET
+              bridgeEndpoint: true
     id: addSubscription
