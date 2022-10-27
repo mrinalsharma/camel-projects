@@ -8,6 +8,7 @@ import java.io.InputStream;
 import org.apache.camel.TypeConverter;
 import java.io.ByteArrayInputStream;
 import java.util.LinkedList;
+import org.apache.camel.Exchange;
 @ApplicationScoped
 public class Ioconverter {
 
