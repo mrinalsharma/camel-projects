@@ -105,11 +105,8 @@
     from:
       uri: direct:addSubscription
       steps:
-        - to:
-            uri: http://httpbin.org/image
-            parameters:
-              httpMethod: GET
-              bridgeEndpoint: false
-        - log:
-            message: ${body}
+        - sort:
+            expression:
+              tokenize:
+                token: \n
     id: addSubscription
