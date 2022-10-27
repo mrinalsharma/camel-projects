@@ -15,7 +15,7 @@ public class Ioconverter {
     CamelContext context;
 
     @PostConstruct
-    public init() {
+    public void init() {
         return context.getTypeConverterRegistry().addTypeConverter(java.util.LinkedList.class, java.io.InputStream.class, new MyConverter())​;
     }
 
