@@ -18,7 +18,7 @@ public class Ioconverter {
 
     @PostConstruct
     public void init() {
-        return context.getTypeConverterRegistry().addTypeConverter(java.util.LinkedList.class, java.io.InputStream.class, new MyConverter());
+        context.getTypeConverterRegistry().addTypeConverter(java.util.LinkedList.class, java.io.InputStream.class, new MyConverter());
     }
 
     static class MyConverter extends TypeConverterSupport {
