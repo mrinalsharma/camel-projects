@@ -17,7 +17,7 @@ import org.apache.camel.Processor;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.enterprise.event.Observes;
-import org.apache.camel.quarkus.core.events.ComponentAddEvent
+import org.apache.camel.quarkus.core.events.ComponentAddEvent;
 @Singleton @Named("myconverter")
 public class Ioconverter {
      private static final Logger LOG = Logger.getLogger(Ioconverter.class);
