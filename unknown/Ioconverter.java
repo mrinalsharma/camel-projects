@@ -1,11 +1,11 @@
 import javax.inject.Inject;
-import javax.annotation.PostConstruct
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import java.util.stream.Collectors;
 import java.util.List;
 import org.apache.camel.CamelContext;
 import java.io.InputStream;
-import org.apache.camel.TypeConverter
+import org.apache.camel.TypeConverter;
 import java.io.ByteArrayInputStream;
 import java.util.LinkedList;
 @ApplicationScoped
