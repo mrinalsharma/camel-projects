@@ -105,6 +105,8 @@
     from:
       uri: direct:addSubscription
       steps:
-        - log:
-            message: ${body}
+        - to:
+            uri: http://https://reqres.in/api/users?page=2
+            parameters:
+              httpMethod: GET
     id: addSubscription
