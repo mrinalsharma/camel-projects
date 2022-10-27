@@ -1,3 +1,4 @@
+//DEPS io.quarkus:quarkus-core
 import javax.inject.Inject;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
