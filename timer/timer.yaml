@@ -1,0 +1,16 @@
+apiVersion: camel.apache.org/v1
+kind: Integration
+metadata:
+  name: timer
+spec:
+  flows:
+    - route:
+        from:
+          uri: kamelet:timer-source
+          steps:
+            - to:
+                uri: http://httpbin.org/image
+                parameters:
+                  httpMethod: GET
+            - log:
+                message: ${body}
