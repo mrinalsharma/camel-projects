@@ -109,5 +109,4 @@
             uri: http://reqres.in/api/users
             parameters:
               httpMethod: GET
-              proxyAuthScheme: https
     id: addSubscription
