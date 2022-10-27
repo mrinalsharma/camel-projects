@@ -105,11 +105,6 @@
     from:
       uri: direct:addSubscription
       steps:
-        - sort:
-            expression:
-              tokenize:
-                token: \n
-                includeTokens: true
         - log:
             message: ${body}
     id: addSubscription
