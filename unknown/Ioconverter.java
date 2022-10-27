@@ -41,8 +41,5 @@ public class Ioconverter {
         public <T> T mandatoryConvertTo(Class<T> type, Exchange exchange, Object value) {
             return convertTo(type, value);
         }
-
-        public tryConvertTo(Class<T> type, Exchange exchange, Object value)
-
     }
 }
