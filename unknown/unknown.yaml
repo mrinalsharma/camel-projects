@@ -106,7 +106,7 @@
       uri: direct:addSubscription
       steps:
         - to:
-            uri: http://reqres.in/api/users
+            uri: http://httpbin.org/image
             parameters:
               httpMethod: GET
               bridgeEndpoint: true
