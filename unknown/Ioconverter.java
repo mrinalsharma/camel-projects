@@ -17,8 +17,7 @@ import org.apache.camel.Processor;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.enterprise.event.Observes;
-import io.quarkus.runtime.ShutdownEvent;
-import io.quarkus.runtime.StartupEvent;
+import org.apache.camel.quarkus.core.events.ComponentAddEvent
 @Singleton @Named("myconverter")
 public class Ioconverter {
      private static final Logger LOG = Logger.getLogger(Ioconverter.class);
@@ -29,8 +28,8 @@ public class Ioconverter {
         this.context = context;
     }
 
-    void startup(@Observes StartupEvent event) { 
-        LOG.info("The application is starting...");
+    public void onComponentAdd(@Observes ComponentAddEvent event) {
+       log.info("Component Added "+ event.getComponent().toString());
     }
 
     @PostConstruct
