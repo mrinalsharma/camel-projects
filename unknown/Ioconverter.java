@@ -11,8 +11,12 @@ import java.util.LinkedList;
 import org.apache.camel.Exchange;
 import org.apache.camel.support.TypeConverterSupport;
 import org.jboss.logging.Logger;
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
+import javax.inject.Named;
+import javax.inject.Singleton;
 
-@ApplicationScoped
+@Singleton @Named("myconverter")
 public class Ioconverter {
      private static final Logger LOG = Logger.getLogger(Ioconverter.class);
     @Inject
