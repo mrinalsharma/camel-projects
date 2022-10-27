@@ -109,5 +109,5 @@
             uri: http://httpbin.org/image
             parameters:
               httpMethod: GET
-              bridgeEndpoint: true
+              bridgeEndpoint: false
     id: addSubscription
