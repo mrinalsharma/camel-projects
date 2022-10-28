@@ -28,7 +28,7 @@ public class Ioconverter {
     }
 
     public void onComponentAdd(@Observes ComponentAddEvent event) {
-       log.info("Component Added "+ event.getComponent().toString());
+       LOG.info("Component Added "+ event.getComponent().toString());
     }
 
     @PostConstruct
