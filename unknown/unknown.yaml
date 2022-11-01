@@ -111,5 +111,5 @@
                 token: \n
         - convertBodyTo:
             type: InputStream
-            id: InputStream
+            id: InputStream.class
     id: addSubscription
