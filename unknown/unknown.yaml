@@ -110,6 +110,5 @@
               tokenize:
                 token: \n
         - convertBodyTo:
-            type: InputStream.class
-            id: InputStream
+            type: java.io.InputStream
     id: addSubscription
