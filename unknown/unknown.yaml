@@ -110,6 +110,6 @@
               tokenize:
                 token: \n
         - convertBodyTo:
-            type: Myconverter
+            type: InputStream
             id: InputStream
     id: addSubscription
