@@ -1,6 +1,6 @@
 import org.apache.camel.Converter;
-import java.io.InputStream.class;
-import java.util.LinkedList.class;
+import java.io.InputStream;
+import java.util.LinkedList;
 import java.io.ByteArrayInputStream;
 @Converter
 public class MyConverter {
