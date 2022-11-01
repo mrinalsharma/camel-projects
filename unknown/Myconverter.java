@@ -3,7 +3,7 @@ import java.io.InputStream;
 import java.util.LinkedList;
 import java.io.ByteArrayInputStream;
 @Converter
-public class MyConverter {
+public class Myconverter {
 
     @Converter
     public static InputStream catToDog(LinkedList cat) {

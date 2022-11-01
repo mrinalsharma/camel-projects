@@ -110,5 +110,5 @@
               tokenize:
                 token: \n
         - convertBodyTo:
-            type: MyConverter
+            type: Myconverter
     id: addSubscription
