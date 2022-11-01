@@ -7,6 +7,6 @@ public class Myconverter {
 
     @Converter
     public static InputStream catToDog(LinkedList cat) {
-    	return new java.io.ByteArrayInputStream("My Hello World".getBytes());;
+    	return new java.io.ByteArrayInputStream("My Hello World".getBytes());
     }  
 }
