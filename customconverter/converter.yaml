@@ -21,9 +21,9 @@ spec:
             - sort:
                 expression:
                   tokenize:
-                    token: \n
+                    token: '"\n"'
                     expression: \n
-                    includeTokens: true
+                    includeTokens: false
             - convertBodyTo:
                 type: java.io.InputStream
             - log: {}
