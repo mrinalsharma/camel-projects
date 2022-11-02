@@ -1,0 +1,28 @@
+apiVersion: camel.apache.org/v1
+kind: Integration
+metadata:
+  name: Converter
+spec:
+  flows:
+    - restConfiguration:
+        scheme: http
+        host: localhost
+        port: '8080'
+    - rest:
+        post:
+          - to: direct:ReceiveRequest
+            consumes: application/json
+            path: /blob
+        path: /data
+    - route:
+        from:
+          uri: direct:ReceiveRequest
+          steps:
+            - sort:
+                expression:
+                  tokenize:
+                    token: \n
+                    expression: \n
+            - convertBodyTo:
+                type: java.io.InputStream
+            - log: {}
