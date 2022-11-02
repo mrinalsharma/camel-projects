@@ -25,4 +25,5 @@ spec:
                     includeTokens: false
             - convertBodyTo:
                 type: java.io.InputStream
-            - log: {}
+            - log:
+                message: ${body}
