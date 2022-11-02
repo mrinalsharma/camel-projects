@@ -23,6 +23,7 @@ spec:
                   tokenize:
                     token: \n
                     expression: \n
+                    includeTokens: true
             - convertBodyTo:
                 type: java.io.InputStream
             - log: {}
