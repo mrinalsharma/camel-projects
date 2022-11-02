@@ -21,7 +21,7 @@ spec:
             - sort:
                 expression:
                   tokenize:
-                    token: '"\n"'
+                    token: \n
                     expression: \n
                     includeTokens: false
             - convertBodyTo:
