@@ -8,6 +8,12 @@ spec:
         scheme: http
         host: localhost
         port: '8090'
+    - rest:
+        post:
+          - to: direct:ReceiveRequest
+            consumes: application/xml
+            path: /blob
+        path: /data
     - route:
         from:
           uri: direct:ReceiveRequest
@@ -15,14 +21,9 @@ spec:
             - sort:
                 expression:
                   tokenize:
+                    token: ','
                     includeTokens: false
             - convertBodyTo:
                 type: java.io.InputStream
             - log:
                 message: ${body}
-    - rest:
-        post:
-          - to: direct:ReceiveRequest
-            consumes: application/xml
-            path: /blob
-        path: /data
