@@ -4,12 +4,10 @@ metadata:
   name: Converter
 spec:
   flows:
-    - rest:
-        post:
-          - to: direct:ReceiveRequest
-            consumes: application/octet-stream
-            path: /blob
-        path: /data
+    - restConfiguration:
+        scheme: http
+        host: localhost
+        port: '8090'
     - route:
         from:
           uri: direct:ReceiveRequest
@@ -17,13 +15,14 @@ spec:
             - sort:
                 expression:
                   tokenize:
-                    token: \n
                     includeTokens: false
             - convertBodyTo:
                 type: java.io.InputStream
             - log:
                 message: ${body}
-    - restConfiguration:
-        scheme: http
-        host: localhost
-        port: '8090'
+    - rest:
+        post:
+          - to: direct:ReceiveRequest
+            consumes: application/xml
+            path: /blob
+        path: /data
