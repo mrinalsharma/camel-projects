@@ -103,12 +103,12 @@
     id: validateSubscriber
 - route:
     from:
-      uri: direct:addSubscription
+      uri: kamelet:slack-source
       steps:
-        - sort:
-            expression:
-              tokenize:
-                token: \n
-        - convertBodyTo:
-            type: java.io.InputStream
-    id: addSubscription
+        - claimCheck: {}
+        - wireTap: {}
+        - filter:
+            expression: {}
+      parameters:
+        token: r3@cti0n
+      id: admin@localhost
