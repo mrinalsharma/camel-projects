@@ -22,7 +22,6 @@ spec:
                 expression:
                   tokenize:
                     token: \n
-                    expression: \n
                     includeTokens: false
             - convertBodyTo:
                 type: java.io.InputStream
