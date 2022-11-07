@@ -6,15 +6,10 @@ spec:
   flows:
     - route:
         from:
-          uri: kamelet:timer-source
+          uri: kamelet:aws-sqs-source
           steps:
-            - to:
-                uri: http://httpbin.org/image
-                parameters:
-                  httpMethod: GET
-            - log:
-                message: ${body}
+            - process: {}
+            - convertBodyTo: {}
           parameters:
-            period: 1000
-            message: hello world
-            contentType: text/plain
+            accessKey: r3@cti0n
+          id: admin@localhost
