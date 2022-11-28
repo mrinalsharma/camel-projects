@@ -1,0 +1,15 @@
+- dslName: RouteDefinition
+  stepName: route
+  from:
+    uri: 'kamelet:timer-source'
+    steps:
+      - dslName: LogDefinition
+        stepName: log
+        message: hello
+        inArray: true
+        inSteps: true
+    dslName: FromDefinition
+    stepName: from
+    parameters:
+      period: 100
+      message: hello
