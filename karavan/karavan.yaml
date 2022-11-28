@@ -1,0 +1,14 @@
+apiVersion: camel.apache.org/v1
+kind: Integration
+metadata:
+  name: karavan
+spec:
+  flows:
+    - route:
+        from:
+          uri: kamelet:timer-source
+          steps:
+            - log:
+                message: hello
+          parameters:
+            message: hello
